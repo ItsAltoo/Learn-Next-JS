@@ -1,0 +1,19 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Mahasiswa {
+  id       Int    @id @default(autoincrement())
+  nama     String @db.VarChar(255)
+  nim      String @unique
+  jurusan  String @db.VarChar(255)
+  angkatan Int @db.Int 
+  email    String @unique @db.VarChar(255)
+}

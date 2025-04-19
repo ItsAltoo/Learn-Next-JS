@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model University {
+  no_univ   Int         @id @default(autoincrement())
+  nama_aniv String
+  grade     Grade
+  mahasiswa Mahasiswa[]
+}
+
+model ProgramStudi {
+  no_prodi   Int         @id @default(autoincrement())
+  nama_prodi String
+  grade      Grade
+  mahasiswa  Mahasiswa[]
+}
+
+model Matkul {
+  no_matkul    Int           @id @default(autoincrement())
+  nama_matkul  String
+  dosen        String
+  ambil_matkul AmbilMatkul[]
+}
+
+model Mahasiswa {
+  no_mahasiswa   Int           @id @default(autoincrement())
+  no_prodi       Int
+  no_univ        Int
+  nama_mahasiswa String
+  tanggal_lahir  DateTime
+  prodi          ProgramStudi  @relation(fields: [no_prodi], references: [no_prodi])
+  universitas    University    @relation(fields: [no_univ], references: [no_univ])
+  ambil_matkul   AmbilMatkul[]
+}
+
+model AmbilMatkul {
+  id           Int       @id @default(autoincrement())
+  no_mahasiswa Int
+  no_matkul    Int
+  mahasiswa    Mahasiswa @relation(fields: [no_mahasiswa], references: [no_mahasiswa])
+  matkul       Matkul    @relation(fields: [no_matkul], references: [no_matkul])
+}
+
+enum Grade {
+  A
+  B
+  C
+  D
+}
