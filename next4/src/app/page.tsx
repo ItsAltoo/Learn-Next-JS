@@ -16,7 +16,7 @@ export default function MahasiswaPage() {
   const [formData, setFormData] = useState<Omit<Mahasiswa, "id">>({
     nama: "",
     nim: "",
-    jurusan: "",
+    jurusan: "".toUpperCase(),
     angkatan: 2025,
     email: "",
   });
@@ -69,7 +69,7 @@ export default function MahasiswaPage() {
     setFormData({
       nama: mhs.nama,
       nim: mhs.nim,
-      jurusan: mhs.jurusan,
+      jurusan: mhs.jurusan.toUpperCase(),
       angkatan: mhs.angkatan,
       email: mhs.email,
     });
