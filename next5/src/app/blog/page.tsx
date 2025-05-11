@@ -1,10 +1,9 @@
-import { Heading } from "@/views/heading/Heading";
+import BlogView from "@/views/blog/BlogView";
 
-export default function Blog() {
+export default function page() {
   return (
     <>
-      <Heading />
-      <h1>blog Page</h1>
+      <BlogView />
     </>
   );
 }

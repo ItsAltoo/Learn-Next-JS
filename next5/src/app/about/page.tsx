@@ -1,10 +1,9 @@
-import { Heading } from "@/views/heading/Heading";
+import AboutView from "@/views/about/AboutView";
 
-export default function About() {
+export default function page() {
   return (
     <>
-      <Heading />
-      <h1>About Page</h1>
+      <AboutView />
     </>
   );
 }

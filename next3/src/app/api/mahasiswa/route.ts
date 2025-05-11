@@ -14,23 +14,33 @@ export async function POST(req: Request) {
       matkuls,
     } = body;
 
-    const univ = await prisma.university.upsert({
+    // Find or create university
+    let univ = await prisma.university.findFirst({
       where: { nama_univ: universitas.nama_univ },
-      update: {}, // Tidak ada perubahan jika sudah ada
-      create: {
-        nama_univ: universitas.nama_univ,
-        grade: universitas.grade as Grade, // Pastikan grade sesuai enum
-      },
     });
 
-    const prodi = await prisma.programStudi.upsert({
+    if (!univ) {
+      univ = await prisma.university.create({
+        data: {
+          nama_univ: universitas.nama_univ,
+          grade: universitas.grade as Grade,
+        },
+      });
+    }
+
+    // Find or create program studi
+    let prodi = await prisma.programStudi.findFirst({
       where: { nama_prodi: program_studi.nama_prodi },
-      update: {}, // Tidak ada perubahan jika sudah ada
-      create: {
-        nama_prodi: program_studi.nama_prodi,
-        grade: program_studi.grade as Grade, // Pastikan grade sesuai enum
-      },
     });
+
+    if (!prodi) {
+      prodi = await prisma.programStudi.create({
+        data: {
+          nama_prodi: program_studi.nama_prodi,
+          grade: program_studi.grade as Grade,
+        },
+      });
+    }
 
     const mahasiswa = await prisma.mahasiswa.create({
       data: {
@@ -44,14 +54,19 @@ export async function POST(req: Request) {
     // Jika ada mata kuliah yang dikirim, proses
     if (Array.isArray(matkuls)) {
       for (const matkul of matkuls) {
-        const matkulData = await prisma.matkul.upsert({
+        // Find or create matkul
+        let matkulData = await prisma.matkul.findFirst({
           where: { nama_matkul: matkul.nama_matkul },
-          update: {},
-          create: {
-            nama_matkul: matkul.nama_matkul,
-            dosen: matkul.dosen,
-          },
         });
+
+        if (!matkulData) {
+          matkulData = await prisma.matkul.create({
+            data: {
+              nama_matkul: matkul.nama_matkul,
+              dosen: matkul.dosen,
+            },
+          });
+        }
 
         await prisma.ambilMatkul.create({
           data: {
@@ -92,6 +107,9 @@ export async function GET() {
     return NextResponse.json(data);
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: "Gagal mengambil data" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Gagal mengambil data" },
+      { status: 500 }
+    );
   }
 }

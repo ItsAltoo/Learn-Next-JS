@@ -875,50 +875,60 @@ export namespace Prisma {
 
   export type PersonAvgAggregateOutputType = {
     id: number | null
+    age: number | null
   }
 
   export type PersonSumAggregateOutputType = {
     id: number | null
+    age: number | null
   }
 
   export type PersonMinAggregateOutputType = {
     id: number | null
     name: string | null
+    age: number | null
   }
 
   export type PersonMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    age: number | null
   }
 
   export type PersonCountAggregateOutputType = {
     id: number
     name: number
+    age: number
     _all: number
   }
 
 
   export type PersonAvgAggregateInputType = {
     id?: true
+    age?: true
   }
 
   export type PersonSumAggregateInputType = {
     id?: true
+    age?: true
   }
 
   export type PersonMinAggregateInputType = {
     id?: true
     name?: true
+    age?: true
   }
 
   export type PersonMaxAggregateInputType = {
     id?: true
     name?: true
+    age?: true
   }
 
   export type PersonCountAggregateInputType = {
     id?: true
     name?: true
+    age?: true
     _all?: true
   }
 
@@ -1011,6 +1021,7 @@ export namespace Prisma {
   export type PersonGroupByOutputType = {
     id: number
     name: string
+    age: number
     _count: PersonCountAggregateOutputType | null
     _avg: PersonAvgAggregateOutputType | null
     _sum: PersonSumAggregateOutputType | null
@@ -1035,6 +1046,7 @@ export namespace Prisma {
   export type PersonSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    age?: boolean
   }, ExtArgs["result"]["person"]>
 
 
@@ -1042,9 +1054,10 @@ export namespace Prisma {
   export type PersonSelectScalar = {
     id?: boolean
     name?: boolean
+    age?: boolean
   }
 
-  export type PersonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["person"]>
+  export type PersonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "age", ExtArgs["result"]["person"]>
 
   export type $PersonPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Person"
@@ -1052,6 +1065,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      age: number
     }, ExtArgs["result"]["person"]>
     composites: {}
   }
@@ -1423,6 +1437,7 @@ export namespace Prisma {
   interface PersonFieldRefs {
     readonly id: FieldRef<"Person", 'Int'>
     readonly name: FieldRef<"Person", 'String'>
+    readonly age: FieldRef<"Person", 'Int'>
   }
     
 
@@ -1760,7 +1775,8 @@ export namespace Prisma {
 
   export const PersonScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    age: 'age'
   };
 
   export type PersonScalarFieldEnum = (typeof PersonScalarFieldEnum)[keyof typeof PersonScalarFieldEnum]
@@ -1816,11 +1832,13 @@ export namespace Prisma {
     NOT?: PersonWhereInput | PersonWhereInput[]
     id?: IntFilter<"Person"> | number
     name?: StringFilter<"Person"> | string
+    age?: IntFilter<"Person"> | number
   }
 
   export type PersonOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    age?: SortOrder
     _relevance?: PersonOrderByRelevanceInput
   }
 
@@ -1830,11 +1848,13 @@ export namespace Prisma {
     OR?: PersonWhereInput[]
     NOT?: PersonWhereInput | PersonWhereInput[]
     name?: StringFilter<"Person"> | string
+    age?: IntFilter<"Person"> | number
   }, "id">
 
   export type PersonOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    age?: SortOrder
     _count?: PersonCountOrderByAggregateInput
     _avg?: PersonAvgOrderByAggregateInput
     _max?: PersonMaxOrderByAggregateInput
@@ -1848,38 +1868,46 @@ export namespace Prisma {
     NOT?: PersonScalarWhereWithAggregatesInput | PersonScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Person"> | number
     name?: StringWithAggregatesFilter<"Person"> | string
+    age?: IntWithAggregatesFilter<"Person"> | number
   }
 
   export type PersonCreateInput = {
     name: string
+    age: number
   }
 
   export type PersonUncheckedCreateInput = {
     id?: number
     name: string
+    age: number
   }
 
   export type PersonUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
   }
 
   export type PersonUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
   }
 
   export type PersonCreateManyInput = {
     id?: number
     name: string
+    age: number
   }
 
   export type PersonUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
   }
 
   export type PersonUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    age?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -1917,24 +1945,29 @@ export namespace Prisma {
   export type PersonCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    age?: SortOrder
   }
 
   export type PersonAvgOrderByAggregateInput = {
     id?: SortOrder
+    age?: SortOrder
   }
 
   export type PersonMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    age?: SortOrder
   }
 
   export type PersonMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    age?: SortOrder
   }
 
   export type PersonSumOrderByAggregateInput = {
     id?: SortOrder
+    age?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {

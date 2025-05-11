@@ -17,7 +17,7 @@ export default function MahasiswaPage() {
     nama: "",
     nim: "",
     jurusan: "".toUpperCase(),
-    angkatan: 2025,
+    angkatan: 0,
     email: "",
   });
   const [editId, setEditId] = useState<number | null>(null);

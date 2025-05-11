@@ -11,7 +11,7 @@ export const Heading = () => {
 
   return (
     <div className="text-center mt-8">
-      <h1 className="text-3xl font-bold">Welcome To my {pageName}</h1>
+      <h1 className="text-3xl font-bold">Welcome To my {pageName.toUpperCase()}</h1>
     </div>
   );
 };
